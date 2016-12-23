@@ -1,0 +1,7 @@
+images
+training_data
+testing_data
+readme_images
+requirements.txt
+.git
+*.ibynb

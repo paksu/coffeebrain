@@ -1,0 +1,6 @@
+.DS_Store
+images
+training_data
+testing_data
+*.pyc
+.ipynb_checkpoints/
