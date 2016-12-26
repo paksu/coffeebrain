@@ -14,7 +14,7 @@ into this
 ```
 
 ## How to install
-pip install -r requirements.txt
+`pip install --upgrade pip && pip install -r requirements.txt`
 
 ## How to fetch data
 Get your labeled dataset in CSV format.
