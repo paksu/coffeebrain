@@ -10,8 +10,6 @@ print "loading classifiers"
 left_classifier = joblib.load("classifiers/left.gz")
 right_classifier = joblib.load("classifiers/right.gz")
 
-DOWNSIZED_IMAGE_SIZE = (100, 100)
-
 
 @app.route("/predict", methods=['POST'], strict_slashes=False)
 def predict():
@@ -28,9 +26,14 @@ def predict():
     left_pot_prediction = left_classifier.predict([left_features])[0]
     right_pot_prediction = right_classifier.predict([right_features])[0]
 
+    left_probabilities = zip(left_classifier.classes_.tolist(), left_classifier.predict_proba([left_features])[0].tolist())
+    right_probabilities = zip(right_classifier.classes_.tolist(), right_classifier.predict_proba([right_features])[0].tolist())
+
     return jsonify({
         "left_pot": constants.REVERSE_LABELS[left_pot_prediction],
-        "right_pot": constants.REVERSE_LABELS[right_pot_prediction]
+        "right_pot": constants.REVERSE_LABELS[right_pot_prediction],
+        "left_probabilities": {constants.REVERSE_LABELS[pair[0]]: pair[1] for pair in left_probabilities},
+        "right_probabilities": {constants.REVERSE_LABELS[pair[0]]: pair[1] for pair in right_probabilities}
     })
 
 

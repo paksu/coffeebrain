@@ -13,11 +13,11 @@ if __name__ == "__main__":
     right_testing_labels, right_testing_features = dataset.load_dataset_from_disk('right', 'testing')
 
     print "training left classifier"
-    left_classifier = SVC(kernel="linear")
+    left_classifier = SVC(kernel="linear", probability=True)
     left_classifier.fit(left_training_features, left_training_labels)
 
     print "training right classifier"
-    right_classifier = SVC(kernel="linear")
+    right_classifier = SVC(kernel="linear", probability=True)
     right_classifier.fit(right_training_features, right_training_labels)
 
     left_accuracy = left_classifier.score(left_testing_features, left_testing_labels)
