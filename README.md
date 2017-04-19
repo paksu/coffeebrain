@@ -12,6 +12,9 @@ into this
   "right_pot": "little"
 }
 ```
+And when you hook it up with https://github.com/ktkiiski/coffee-pot you get this
+
+![Imgur](http://i.imgur.com/C52q3iq.png)
 
 ## How to install
 `pip install --upgrade pip && pip install -r requirements.txt`
