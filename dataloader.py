@@ -2,7 +2,6 @@ import os
 import csv
 import sys
 import requests
-import random
 import shutil
 
 
@@ -46,6 +45,12 @@ def categorize_and_split_dataset(rows):
     for row in rows:
         image_url, left_label, right_label = row
         image_name = image_url.split("/")[-1]
+
+        if left_label == 'full':
+            left_label = 'plenty'
+
+        if right_label == 'full':
+            right_label = 'plenty'
 
         if left_label not in left_dataset:
             left_dataset[left_label] = []
