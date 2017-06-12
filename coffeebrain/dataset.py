@@ -9,7 +9,7 @@ def load_labeled_dataset_from_disk(side, dataset_path, label):
     args:
     - side: Which side? Accepts 'right' or 'left'
     - dataset_path: Path of the dataset directory
-    - label: What label are we loading. Accepts 'unknown', 'empty', 'little', 'plenty', 'full'
+    - label: What label are we loading. Accepts 'unknown', 'empty', 'little', 'plenty'
     """
 
     assert side in constants.SIDES

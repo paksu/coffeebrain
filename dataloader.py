@@ -92,7 +92,7 @@ def create_directories(root=None):
         os.makedirs("{}/images".format(root))
 
     for dataset in ['training_data', 'testing_data']:
-        for label in ['unknown', 'empty', 'little', 'plenty', 'full']:
+        for label in ['unknown', 'empty', 'little', 'plenty']:
             l = "{}/{}/left_{}".format(root, dataset, label)
             r = "{}/{}/right_{}".format(root, dataset, label)
             if not os.path.exists(l):

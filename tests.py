@@ -34,7 +34,7 @@ class TestDataLoader(unittest.TestCase):
 
         # check that dataset directories were created
         for dataset in ['training_data', 'testing_data']:
-            for label in ['unknown', 'empty', 'little', 'plenty', 'full']:
+            for label in ['unknown', 'empty', 'little', 'plenty']:
                 left_dir = "{}/{}/left_{}".format(temp_dir, dataset, label)
                 right_dir = "{}/{}/right_{}".format(temp_dir, dataset, label)
                 self.assertTrue(os.path.isdir(left_dir), "Missing directory {}".format(left_dir))
