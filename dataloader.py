@@ -61,7 +61,7 @@ def categorize_and_split_dataset(rows):
 def link_images_to_dataset(side, dataset):
     for label, images in dataset.items():
         # Shuffle the dataset
-        random.shuffle(images)
+        # random.shuffle(images)
 
         # Split the dataset into testing and training
         # Training data is 75%, testing data is 25%

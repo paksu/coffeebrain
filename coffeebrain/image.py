@@ -1,8 +1,8 @@
 import numpy as np
 from StringIO import StringIO
-from PIL import Image, ImageEnhance
+from PIL import Image
 
-DOWNSIZED_IMAGE_SIZE = (100, 100)
+DOWNSIZED_IMAGE_SIZE = (75, 75)
 
 
 def process_image(image_path=None, image_data=None):
@@ -20,9 +20,5 @@ def process_image(image_path=None, image_data=None):
     downsized_left = image.crop((0, 0, width / 2, height)).resize(DOWNSIZED_IMAGE_SIZE)
     downsized_right = image.crop((width / 2, 0, width, height)).resize(DOWNSIZED_IMAGE_SIZE)
 
-    # Sharpen the image for better prediction results
-    sharpened_left = ImageEnhance.Sharpness(downsized_left).enhance(2)
-    sharpened_right = ImageEnhance.Sharpness(downsized_right).enhance(2)
-
     # Return two numpy arrays (feature vectors) for both sides of the data
-    return np.array(sharpened_left).flatten(), np.array(sharpened_right).flatten()
+    return np.array(downsized_left).flatten(), np.array(downsized_right).flatten()

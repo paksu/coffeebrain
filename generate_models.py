@@ -1,5 +1,7 @@
 from sklearn.svm import SVC
 from sklearn.externals import joblib
+from sklearn.preprocessing import Normalizer
+from sklearn.pipeline import Pipeline
 from coffeebrain import dataset
 import os
 
@@ -13,16 +15,28 @@ if __name__ == "__main__":
     right_testing_labels, right_testing_features = dataset.load_dataset_from_disk('right', 'testing')
 
     print "training left classifier"
-    left_classifier = SVC(kernel="linear", probability=True)
+    search_params = {
+        'kernel': ['linear'],
+        'C': [100]
+    }
+
+    estimators = [
+        ('normalize', Normalizer()),
+        ('svm', SVC(kernel='linear', C=100, probability=True))
+    ]
+
+    left_classifier = Pipeline(estimators)
     left_classifier.fit(left_training_features, left_training_labels)
 
+    left_accuracy = left_classifier.score(left_testing_features, left_testing_labels)
+    print "left classifier accuracy is %.2f" % (left_accuracy * 100)
+
     print "training right classifier"
-    right_classifier = SVC(kernel="linear", probability=True)
+    right_classifier = Pipeline(estimators)
     right_classifier.fit(right_training_features, right_training_labels)
 
-    left_accuracy = left_classifier.score(left_testing_features, left_testing_labels)
     right_accuracy = right_classifier.score(right_testing_features, right_testing_labels)
-    print "left classifier accuracy is %.2f" % (left_accuracy * 100)
+
     print "right classifier accuracy is %.2f" % (right_accuracy * 100)
 
     print "saving models"
